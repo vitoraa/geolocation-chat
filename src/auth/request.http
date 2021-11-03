@@ -1,0 +1,10 @@
+POST http://localhost:3000/auth HTTP/1.1
+content-type: application/json
+
+{
+  "name": "test",
+  "password": "test",
+  "passwordConfirmation": "test",
+  "email": "email@email.com",
+  "role": "user"
+}
