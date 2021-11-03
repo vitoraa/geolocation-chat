@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -14,6 +14,14 @@ export class AuthService {
   ) { }
 
   create (createUserDto: CreateUserDto) {
+    const userWithTheSameEmail = this.userRepository.findOne({
+      where: { email: createUserDto.email },
+    });
+
+    if (userWithTheSameEmail) {
+      throw new BadRequestException('User with the same email already exists');
+    }
+
     return this.userRepository.save(createUserDto)
   }
 
