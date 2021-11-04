@@ -5,6 +5,6 @@ content-type: application/json
   "name": "test",
   "password": "test",
   "passwordConfirmation": "test",
-  "email": "email2dd@email.com.br",
+  "email": "vitor44@email.com.br",
   "role": "user"
 }

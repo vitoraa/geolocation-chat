@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hasher } from './data/protocols/criptography/hasher';
 import { AddAccount } from './domain/usecases/add-account';
+import { Authentication } from './domain/usecases/authentication';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -13,21 +14,22 @@ export class AuthService {
   constructor (
     @Inject('AddAccount')
     private addAccount: AddAccount,
+    @Inject('Authentication')
+    private authentication: Authentication
   ) { }
 
   async create (createUserDto: CreateUserDto) {
+    const { name, email, password } = createUserDto
     try {
       const isValid = await this.addAccount.add(createUserDto)
       if (!isValid) {
         return new BadRequestException('Invalid data')
       }
-      return 'access-token'
+
+      const accessToken = await this.authentication.auth({ email, password })
+      return accessToken
     } catch (error) {
       throw new InternalServerErrorException(error)
     }
-  }
-
-  update (id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
   }
 }

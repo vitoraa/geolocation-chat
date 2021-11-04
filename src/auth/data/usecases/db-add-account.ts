@@ -6,7 +6,6 @@ import { User } from "../../entities/user.entity"
 import { Hasher } from "../protocols/criptography/hasher"
 import { CreateUserDto } from '../../dto/create-user.dto'
 import { AccountModel } from "../../domain/models/account"
-import { AddAccountRepository } from "../protocols/db/add-account-repository"
 
 @Injectable()
 export class DbAddAccount implements AddAccount {

@@ -11,9 +11,4 @@ export class AuthController {
   create (@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
-
-  @Patch(':id')
-  update (@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.authService.update(+id, updateUserDto);
-  }
 }
