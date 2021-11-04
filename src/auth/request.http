@@ -5,6 +5,18 @@ content-type: application/json
   "name": "test",
   "password": "test",
   "passwordConfirmation": "test",
-  "email": "fgfgg@email.com.br",
+  "email": "fgffffgg@email.com.br",
+  "role": "user"
+}
+#####
+
+POST http://localhost:3000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+  "name": "test",
+  "password": "test",
+  "passwordConfirmation": "test",
+  "email": "fgffffgg@email.com.br",
   "role": "user"
 }
