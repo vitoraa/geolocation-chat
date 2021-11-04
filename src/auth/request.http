@@ -20,3 +20,8 @@ content-type: application/json
   "email": "fgffffgg@email.com.br",
   "role": "user"
 }
+
+####
+GET http://localhost:3000/auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODQyM2RiNjhhODcwNGIzY2M5ZTYyYiIsImlhdCI6MTYzNjA1NTU0MCwiZXhwIjoxNjM2MDU1NjAwfQ.Ph6LpZvtOxvXqmLQiTAaCLt3LURr-XrwQ8v1wc_weZ4
+
