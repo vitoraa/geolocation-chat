@@ -1,11 +1,11 @@
-import { AccountModel } from "../../../domain/models/account"
 import { CreateUserDto } from "../../../dto/create-user.dto"
+import { User } from "../../../entities/user.entity"
 
-export interface AddAccountRepository {
-  add: (account: AddAccountRepository.Params) => Promise<AddAccountRepository.Result>
+export interface AddUserRepository {
+  add: (user: AddUserRepository.Params) => Promise<AddUserRepository.Result>
 }
 
-export namespace AddAccountRepository {
+export namespace AddUserRepository {
   export type Params = CreateUserDto
-  export type Result = AccountModel
+  export type Result = User
 }

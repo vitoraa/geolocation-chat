@@ -18,12 +18,12 @@ export class DbAuthentication implements Authentication {
   ) { }
 
   async auth (authentication: AuthenticationParams): Promise<string> {
-    const account = await this.userRepository.findOne({ email: authentication.email })
-    if (account) {
-      const loginValid = await this.hashComparer.compare(authentication.password, account.password)
+    const user = await this.userRepository.findOne({ email: authentication.email })
+    if (user) {
+      const loginValid = await this.hashComparer.compare(authentication.password, user.password)
       if (loginValid) {
-        const accessToken = await this.encrypter.encrypt(account.id.toString())
-        await this.userRepository.save({ id: account.id, accessToken })
+        const accessToken = await this.encrypter.encrypt(user.id.toString())
+        await this.userRepository.save({ id: user.id, accessToken })
         return accessToken
       }
     }

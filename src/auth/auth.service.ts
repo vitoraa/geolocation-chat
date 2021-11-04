@@ -2,7 +2,7 @@ import { BadRequestException, Inject, Injectable, InternalServerErrorException }
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hasher } from './data/protocols/criptography/hasher';
-import { AddAccount } from './domain/usecases/add-account';
+import { AddUser } from './domain/usecases/add-user';
 import { Authentication } from './domain/usecases/authentication';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -12,16 +12,16 @@ import { User } from './entities/user.entity';
 export class AuthService {
 
   constructor (
-    @Inject('AddAccount')
-    private addAccount: AddAccount,
+    @Inject('AddUser')
+    private addUser: AddUser,
     @Inject('Authentication')
     private authentication: Authentication
   ) { }
 
   async create (createUserDto: CreateUserDto) {
-    const { name, email, password } = createUserDto
+    const { name, email, password, role } = createUserDto
     try {
-      const isValid = await this.addAccount.add(createUserDto)
+      const isValid = await this.addUser.add({ name, email, password, role })
       if (!isValid) {
         return new BadRequestException('Invalid data')
       }
