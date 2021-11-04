@@ -11,5 +11,7 @@ export const environment = {
   databaseName: process.env.DATABASE_NAME || 'geolocation-chat',
   databaseConnectionTimeOut: process.env.DATABASE_CONNECTION_TIME_OUT || '150000',
   databaseAcquireTimeOut: process.env.DATABASE_ACQUIRE_TIME_OUT || '150000',
-  databaseConnectionLimit: process.env.DATABASE_CONNECTION_LIMIT || '20'
+  databaseConnectionLimit: process.env.DATABASE_CONNECTION_LIMIT || '20',
+  jwtSecret: process.env.JWT_SECRET || 'secret',
+  saltNumber: process.env.SALT_NUMBER || '10',
 }
