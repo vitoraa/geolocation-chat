@@ -6,6 +6,6 @@ export interface AddUserRepository {
 }
 
 export namespace AddUserRepository {
-  export type Params = CreateUserDto
+  export type Params = Omit<User, 'id'>
   export type Result = User
 }

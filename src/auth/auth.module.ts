@@ -7,6 +7,7 @@ import { BCryptAdapter } from '../infra/database/config/criptography/bcrypt-adap
 import { JwtAdapter } from '../infra/database/config/criptography/jwt-adapter';
 import { DbAuthentication } from './data/usecases/db-authentication';
 import { DbAddUser } from './data/usecases/db-add-user';
+import { UserMongoRepository } from '../infra/database/mongodb/user/user-mongo-repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -17,6 +18,9 @@ import { DbAddUser } from './data/usecases/db-add-user';
     { provide: 'HashComparer', useFactory: () => new BCryptAdapter(12) },
     { provide: 'AddUser', useClass: DbAddUser },
     { provide: 'Authentication', useClass: DbAuthentication },
-    { provide: 'Encrypter', useFactory: () => new JwtAdapter('secret') }],
+    { provide: 'Encrypter', useFactory: () => new JwtAdapter('secret') },
+    { provide: 'AddUserRepository', useClass: UserMongoRepository },
+    { provide: 'LoadUserByEmailRepository', useClass: UserMongoRepository }],
+
 })
 export class AuthModule { }

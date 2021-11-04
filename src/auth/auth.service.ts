@@ -15,7 +15,7 @@ export class AuthService {
     @Inject('AddUser')
     private addUser: AddUser,
     @Inject('Authentication')
-    private authentication: Authentication
+    private authentication: Authentication,
   ) { }
 
   async create (createUserDto: CreateUserDto) {
