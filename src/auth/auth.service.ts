@@ -20,7 +20,7 @@ export class AuthService {
       const isValid = await this.addUser.add({ name, email, password, role })
 
       if (!isValid) {
-        return new BadRequestException('Invalid data')
+        return new BadRequestException('User already exists')
       }
 
       const accessToken = await this.authentication.auth({ email, password })
