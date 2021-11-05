@@ -3,7 +3,6 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { UserEntity } from '../users/user.entity';
 import { User } from '../users/user.interface';
-import { UsersService } from '../users/users.service';
 import { AddUser } from './domain/usecases/add-user';
 import { Authentication } from './domain/usecases/authentication';
 import { ValidateUser } from './domain/usecases/validate-user';
@@ -12,7 +11,6 @@ import { ValidateUser } from './domain/usecases/validate-user';
 export class AuthService {
 
   constructor (
-    private usersService: UsersService,
     @Inject('AddUser')
     private addUser: AddUser,
     @Inject('Authentication')

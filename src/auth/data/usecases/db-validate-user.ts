@@ -16,8 +16,8 @@ export class DbValidateUser implements ValidateUser {
   async validate (email: string, password: string): Promise<UserEntity> {
     const user = await this.loadUserByEmailRepository.loadByEmail(email)
     if (user) {
-      const isLoginValid = await this.hashComparer.compare(password, user.password)
-      if (isLoginValid) return user
+      const loginValid = await this.hashComparer.compare(password, user.password)
+      if (loginValid) return user
     }
     return null
   }
