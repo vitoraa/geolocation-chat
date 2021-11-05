@@ -1,22 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, UseGuards } from '@nestjs/common';
-import { SignUpUserService } from './signup.service';
+import { Controller, Post, Body, HttpCode } from '@nestjs/common';
+import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { LoginService } from './login.service';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor (private readonly signUpUserService: SignUpUserService, private readonly loginService: LoginService) { }
+  constructor (private readonly authService: AuthService) { }
 
   @Post('/signup')
-  signUp (@Body() createUserDto: CreateUserDto) {
-    return this.signUpUserService.handle(createUserDto);
+  createUser (@Body() user: CreateUserDto) {
+    return this.authService.create(user);
   }
 
   @HttpCode(200)
   @Post('/login')
   login (@Body() loginUserDto: LoginUserDto) {
-    return this.loginService.handle(loginUserDto);
+    return this.authService.login(loginUserDto);
   }
 }

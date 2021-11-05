@@ -5,8 +5,7 @@ import { User } from './entities/user.entity';
 import { DbAuthentication } from './data/usecases/db-authentication';
 import { DbAddUser } from './data/usecases/db-add-user';
 import { UserMongoRepository } from '../infra/database/mongodb/user/user-mongo-repository';
-import { SignUpUserService } from './signup.service';
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 import { environment } from '../environment';
 import { BCryptAdapter } from '../infra/criptography/bcrypt-adapter';
 import { JwtAdapter } from '../infra/criptography/jwt-adapter';
@@ -23,8 +22,7 @@ import { JwtStrategy } from '../infra/criptography/jwt.strategy';
     })],
   controllers: [AuthController],
   providers: [
-    SignUpUserService,
-    LoginService,
+    AuthService,
     JwtStrategy,
     JwtAdapter,
     { provide: 'Hasher', useFactory: () => new BCryptAdapter(parseInt(environment.saltNumber)) },

@@ -1,10 +1,11 @@
-import { BadRequestException, Inject, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { AddUser } from './domain/usecases/add-user';
 import { Authentication } from './domain/usecases/authentication';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
-export class SignUpUserService {
+export class AuthService {
 
   constructor (
     @Inject('AddUser')
@@ -13,7 +14,7 @@ export class SignUpUserService {
     private authentication: Authentication,
   ) { }
 
-  async handle (createUserDto: CreateUserDto) {
+  async create (createUserDto: CreateUserDto) {
     const { name, email, password, role } = createUserDto
     try {
       const isValid = await this.addUser.add({ name, email, password, role })
@@ -28,5 +29,17 @@ export class SignUpUserService {
     } catch (error) {
       throw new InternalServerErrorException(error)
     }
+  }
+
+  async login (loginUserDto: LoginUserDto) {
+    const { email, password } = loginUserDto;
+
+    const accessToken = await this.authentication.auth({ email, password });
+
+    if (!accessToken) {
+      throw new UnauthorizedException();
+    }
+
+    return { accessToken };
   }
 }
