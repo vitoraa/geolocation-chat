@@ -32,6 +32,7 @@ import { UserEntity } from '../users/user.entity';
     { provide: 'Encrypter', useClass: JwtAdapter },
     { provide: 'AddUserRepository', useClass: UserMongoRepository },
     { provide: 'LoadUserByEmailRepository', useClass: UserMongoRepository },
+    { provide: 'UpdateAccessTokenRepository', useClass: UserMongoRepository },
   ],
 
 })

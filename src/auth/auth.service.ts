@@ -1,6 +1,8 @@
 import { BadRequestException, Inject, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LoginUserDto } from '../users/dto/login-user.dto';
+import { UserEntity } from '../users/user.entity';
+import { User } from '../users/user.interface';
 import { AddUser } from './domain/usecases/add-user';
 import { Authentication } from './domain/usecases/authentication';
 
@@ -15,9 +17,9 @@ export class AuthService {
   ) { }
 
   async create (createUserDto: CreateUserDto) {
-    const { name, email, password, role } = createUserDto
+    const { email, password } = createUserDto
 
-    const user = await this.addUser.add({ name, email, password, role })
+    const user: User = await this.addUser.add(createUserDto)
 
     if (!user) {
       throw new BadRequestException('User already exists')
@@ -25,7 +27,11 @@ export class AuthService {
 
     const accessToken = await this.authentication.auth({ email, password })
 
-    return { user, accessToken }
+    const newUser = new UserEntity()
+    newUser.name = user.name
+    newUser.email = user.email
+
+    return { user: newUser, accessToken }
   }
 
   async login (loginUserDto: LoginUserDto) {

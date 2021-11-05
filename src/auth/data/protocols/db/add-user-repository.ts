@@ -5,6 +5,6 @@ export interface AddUserRepository {
 }
 
 export namespace AddUserRepository {
-  export type Params = Omit<UserEntity, 'id'>
+  export type Params = Omit<UserEntity, 'id' | 'accessToken'>
   export type Result = UserEntity
 }

@@ -5,6 +5,7 @@ import { AddUserRepository } from "../protocols/db/add-user-repository"
 import { LoadUserByEmailRepository } from "../protocols/db/load-user-by-email-repository"
 import { UserEntity } from "../../../users/user.entity"
 import { CreateUserDto } from "../../../users/dto/create-user.dto"
+import { UsersService } from "../../../users/users.service"
 
 @Injectable()
 export class DbAddUser implements AddUser {

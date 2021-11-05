@@ -16,5 +16,8 @@ export class UserEntity {
   password: string;
 
   @Column()
-  role: UserRoles = UserRoles.USER;
+  role: UserRoles;
+
+  @Column()
+  accessToken: string;
 }
