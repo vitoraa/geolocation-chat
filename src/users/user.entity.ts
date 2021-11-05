@@ -2,7 +2,7 @@ import { Column, Entity, ObjectIdColumn } from "typeorm";
 import { UserRoles } from "../shared/user-roles";
 
 @Entity({ name: 'users' })
-export class User {
+export class UserEntity {
   @ObjectIdColumn()
   id: number;
 
