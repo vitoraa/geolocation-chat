@@ -13,6 +13,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from '../infra/criptography/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { UserEntity } from '../users/user.entity';
+import { DbValidateUser } from './data/usecases/db-validate-user';
 
 @Module({
   imports: [PassportModule,
@@ -28,6 +29,7 @@ import { UserEntity } from '../users/user.entity';
     { provide: 'Hasher', useFactory: () => new BCryptAdapter(parseInt(environment.saltNumber)) },
     { provide: 'HashComparer', useFactory: () => new BCryptAdapter(parseInt(environment.saltNumber)) },
     { provide: 'AddUser', useClass: DbAddUser },
+    { provide: 'ValidateUser', useClass: DbValidateUser },
     { provide: 'Authentication', useClass: DbAuthentication },
     { provide: 'Encrypter', useClass: JwtAdapter },
     { provide: 'AddUserRepository', useClass: UserMongoRepository },

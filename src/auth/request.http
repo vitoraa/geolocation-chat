@@ -5,7 +5,7 @@ content-type: application/json
   "name": "test",
   "password": "test",
   "passwordConfirmation": "test",
-  "email": "vitor10@email.com.br",
+  "email": "vitor1020@email.com.br",
   "role": "user"
 }
 #####
@@ -14,14 +14,11 @@ POST http://localhost:3000/auth/login HTTP/1.1
 content-type: application/json
 
 {
-  "name": "test",
   "password": "test",
-  "passwordConfirmation": "test",
-  "email": "fgffffggsss@email.com.br",
-  "role": "user"
+  "email": "vitor1020@email.com.br"
 }
 
 ####
-GET http://localhost:3000/auth
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODQyM2RiNjhhODcwNGIzY2M5ZTYyYiIsImlhdCI6MTYzNjA1NTU0MCwiZXhwIjoxNjM2MDU1NjAwfQ.Ph6LpZvtOxvXqmLQiTAaCLt3LURr-XrwQ8v1wc_weZ4
+GET http://localhost:3000/users/email/vitor1020@email.com.br
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImVtYWlsIjoidml0b3IxMDIwQGVtYWlsLmNvbS5iciIsImlhdCI6MTYzNjEzNDEyMSwiZXhwIjoxNjM2MTM3NzIxfQ.EuGacrOplPlwbbNscguUksfHd_EHiTeG6rvTmyVm75w
 
