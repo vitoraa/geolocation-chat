@@ -20,5 +20,5 @@ content-type: application/json
 
 ####
 GET http://localhost:3000/users/email/vitor1020@email.com.br
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImVtYWlsIjoidml0b3IxMDIwQGVtYWlsLmNvbS5iciIsImlhdCI6MTYzNjEzNDEyMSwiZXhwIjoxNjM2MTM3NzIxfQ.EuGacrOplPlwbbNscguUksfHd_EHiTeG6rvTmyVm75w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImVtYWlsIjoidml0b3IxMDIwQGVtYWlsLmNvbS5iciIsImlhdCI6MTYzNjEzNjU3OCwiZXhwIjoxNjM2MTQwMTc4fQ.OfFoALNmTbIt_bc_tv-2Ls2wd7VZQpO_a975P8H-Rnw
 
