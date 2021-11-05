@@ -1,11 +1,11 @@
-POST http://localhost:3000/auth HTTP/1.1
+POST http://localhost:3000/auth/signup HTTP/1.1
 content-type: application/json
 
 {
   "name": "test",
   "password": "test",
   "passwordConfirmation": "test",
-  "email": "fgffffgg@email.com.br",
+  "email": "vitor10@email.com.br",
   "role": "user"
 }
 #####
@@ -17,7 +17,7 @@ content-type: application/json
   "name": "test",
   "password": "test",
   "passwordConfirmation": "test",
-  "email": "fgffffgg@email.com.br",
+  "email": "fgffffggsss@email.com.br",
   "role": "user"
 }
 
