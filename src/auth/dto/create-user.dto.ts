@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
+import { UserRoles } from '../../shared/user-roles';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -14,5 +15,5 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
-  role: string;
+  role: UserRoles;
 }

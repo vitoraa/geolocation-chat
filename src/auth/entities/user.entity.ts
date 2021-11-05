@@ -1,4 +1,5 @@
 import { Column, Entity, ObjectIdColumn } from "typeorm";
+import { UserRoles } from "../../shared/user-roles";
 
 @Entity({ name: 'users' })
 export class User {
@@ -14,6 +15,6 @@ export class User {
   @Column({ type: 'string' })
   password: string;
 
-  @Column({ type: 'string' })
-  role: string;
+  @Column()
+  role: UserRoles = UserRoles.USER;
 }
