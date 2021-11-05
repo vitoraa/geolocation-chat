@@ -1,7 +1,4 @@
 import { Inject, Injectable } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { Repository } from "typeorm"
-import { User } from "../../entities/user.entity"
 import { Hasher } from "../protocols/criptography/hasher"
 import { CreateUserDto } from '../../dto/create-user.dto'
 import { AddUser } from "../../domain/usecases/add-user"
@@ -23,7 +20,7 @@ export class DbAddUser implements AddUser {
   async add (user: CreateUserDto): Promise<UserEntity> {
     const { email, password } = user
     const userWithSameEmail = await this.loadUserByEmailRepository.loadByEmail(email);
-    let userCreated: User = null
+    let userCreated: UserEntity = null
     if (!userWithSameEmail) {
       const hashedPassword = await this.hasher.hash(password)
       userCreated = await this.addUserRepository.add({ ...user, password: hashedPassword })
