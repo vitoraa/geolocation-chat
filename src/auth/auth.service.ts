@@ -16,19 +16,16 @@ export class AuthService {
 
   async create (createUserDto: CreateUserDto) {
     const { name, email, password, role } = createUserDto
-    try {
-      const isValid = await this.addUser.add({ name, email, password, role })
 
-      if (!isValid) {
-        return new BadRequestException('User already exists')
-      }
+    const user = await this.addUser.add({ name, email, password, role })
 
-      const accessToken = await this.authentication.auth({ email, password })
-
-      return { accessToken }
-    } catch (error) {
-      throw new InternalServerErrorException(error)
+    if (!user) {
+      throw new BadRequestException('User already exists')
     }
+
+    const accessToken = await this.authentication.auth({ email, password })
+
+    return { user, accessToken }
   }
 
   async login (loginUserDto: LoginUserDto) {
