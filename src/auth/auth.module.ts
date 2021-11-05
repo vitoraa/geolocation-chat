@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
 import { DbAuthentication } from './data/usecases/db-authentication';
 import { DbAddUser } from './data/usecases/db-add-user';
 import { UserMongoRepository } from '../infra/database/mongodb/user/user-mongo-repository';
@@ -12,14 +11,15 @@ import { JwtAdapter } from '../infra/criptography/jwt-adapter';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from '../infra/criptography/jwt.strategy';
+import { UsersModule } from '../users/users.module';
+import { UserEntity } from '../users/user.entity';
 
 @Module({
   imports: [PassportModule,
-    TypeOrmModule.forFeature([User]),
     JwtModule.register({
       secret: environment.jwtSecret,
       signOptions: { expiresIn: '1h' },
-    })],
+    }), UsersModule, TypeOrmModule.forFeature([UserEntity])],
   controllers: [AuthController],
   providers: [
     AuthService,

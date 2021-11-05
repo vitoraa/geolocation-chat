@@ -1,11 +1,10 @@
-import { CreateUserDto } from "../../../dto/create-user.dto"
-import { User } from "../../../entities/user.entity"
+import { UserEntity } from "../../../../users/user.entity"
 
 export interface AddUserRepository {
   add: (user: AddUserRepository.Params) => Promise<AddUserRepository.Result>
 }
 
 export namespace AddUserRepository {
-  export type Params = Omit<User, 'id'>
-  export type Result = User
+  export type Params = Omit<UserEntity, 'id'>
+  export type Result = UserEntity
 }

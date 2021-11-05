@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common"
 import { Hasher } from "../protocols/criptography/hasher"
-import { CreateUserDto } from '../../dto/create-user.dto'
 import { AddUser } from "../../domain/usecases/add-user"
 import { AddUserRepository } from "../protocols/db/add-user-repository"
 import { LoadUserByEmailRepository } from "../protocols/db/load-user-by-email-repository"
 import { UserEntity } from "../../../users/user.entity"
+import { CreateUserDto } from "../../../users/dto/create-user.dto"
 
 @Injectable()
 export class DbAddUser implements AddUser {
