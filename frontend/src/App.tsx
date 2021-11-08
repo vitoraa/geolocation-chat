@@ -12,7 +12,7 @@ function App (): any {
           {' '}
           <code>src/App.tsx</code>
           {' '}
-          and save to reloadee.
+          and save to reload.
         </p>
         <a
           className="App-link"
