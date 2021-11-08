@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App(): any {
+function App (): any {
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +12,7 @@ function App(): any {
           {' '}
           <code>src/App.tsx</code>
           {' '}
-          and save to reload.
+          and save to reloadee.
         </p>
         <a
           className="App-link"
