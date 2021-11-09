@@ -10,6 +10,7 @@ export namespace AddUser {
     password: string
     passwordConfirmation: string
     name: string
+    role: string
   }
 
   export type Model = UserModel
