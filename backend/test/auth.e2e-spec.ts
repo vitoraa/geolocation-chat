@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,6 +20,7 @@ describe('', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(new ValidationPipe());
     await app.init();
     repository = moduleFixture.get('UserEntityRepository');
   });
@@ -40,9 +41,21 @@ describe('', () => {
           name: 'Vitor',
           email: 'vitor3@gmail.com',
           password: '123',
-          passwordConfirmation: '123'
+          passwordConfirmation: '123',
+          role: 'User'
         })
         .expect(201)
+    });
+
+    test('Should return 400 on signup', async () => {
+      await request(app.getHttpServer())
+        .post('/auth/signup')
+        .send({
+          email: 'vitor3@gmail.com',
+          password: '123',
+          passwordConfirmation: '123'
+        })
+        .expect(400)
     });
   })
 
