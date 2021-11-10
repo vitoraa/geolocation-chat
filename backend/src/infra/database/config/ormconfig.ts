@@ -13,6 +13,7 @@ export function ormConfig (): any {
     autoLoadEntities: true,
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    keepConnectionAlive: true,
     connectTimeout: parseInt(environment.databaseConnectionTimeOut),
     acquireTimeout: parseInt(environment.databaseAcquireTimeOut),
     extra: {
