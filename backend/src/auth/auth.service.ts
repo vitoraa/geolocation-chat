@@ -40,7 +40,7 @@ export class AuthService {
     const accessToken = await this.authentication.auth({ email, password });
 
     if (!accessToken) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Email or password invalid!');
     }
 
     return { accessToken };
