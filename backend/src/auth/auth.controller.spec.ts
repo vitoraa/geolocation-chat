@@ -48,7 +48,7 @@ describe('AuthController', () => {
   describe('login', () => {
     test('should call AuthService with corrects params', async () => {
       const loginSpy = jest.spyOn(spyService, 'login')
-      controller.login(makeFakeLoginRequest())
+      await controller.login(makeFakeLoginRequest())
       expect(loginSpy).toHaveBeenCalledWith(makeFakeLoginRequest())
     });
   });
@@ -56,7 +56,7 @@ describe('AuthController', () => {
   describe('createUser', () => {
     test('should call AuthService with corrects params', async () => {
       const loginSpy = jest.spyOn(spyService, 'create')
-      controller.createUser(makeFakeCreateUserRequest())
+      await controller.createUser(makeFakeCreateUserRequest())
       expect(loginSpy).toHaveBeenCalledWith(makeFakeCreateUserRequest())
     });
   });
