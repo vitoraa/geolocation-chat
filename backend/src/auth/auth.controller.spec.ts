@@ -53,7 +53,7 @@ describe('AuthController', () => {
     });
   });
 
-  describe('signup', () => {
+  describe('createUser', () => {
     test('should call AuthService with corrects params', async () => {
       const loginSpy = jest.spyOn(spyService, 'create')
       controller.createUser(makeFakeCreateUserRequest())
