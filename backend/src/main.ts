@@ -12,7 +12,6 @@ async function bootstrap () {
     .setTitle('Geolocation Chat')
     .setDescription('Geolocation Chat API')
     .setVersion('0.1')
-    .addTag('geolocation')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
