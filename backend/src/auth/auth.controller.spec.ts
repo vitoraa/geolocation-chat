@@ -1,15 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserRoles } from '../shared/user-roles';
 import { CreateUserDto } from '../users/dto/create-user.dto';
+import { LoginUserDto } from '../users/dto/login-user.dto';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
-const makeFakeRequest = (): CreateUserDto => ({
+const makeFakeCreateUserRequest = (): CreateUserDto => ({
   email: 'any_email@email.com',
   password: 'any_password',
   passwordConfirmation: 'any_password',
   name: 'any name',
   role: UserRoles.USER
+})
+
+const makeFakeLoginRequest = (): LoginUserDto => ({
+  email: 'any_email@email.com',
+  password: 'any_password'
 })
 
 describe('AuthController', () => {
@@ -22,6 +28,7 @@ describe('AuthController', () => {
       provide: AuthService,
       useFactory: () => ({
         login: jest.fn(() => null),
+        create: jest.fn(() => null),
       }),
     };
 
@@ -41,8 +48,16 @@ describe('AuthController', () => {
   describe('login', () => {
     test('should call AuthService with corrects params', async () => {
       const loginSpy = jest.spyOn(spyService, 'login')
-      controller.login(makeFakeRequest())
-      expect(loginSpy).toHaveBeenCalledWith(makeFakeRequest())
+      controller.login(makeFakeLoginRequest())
+      expect(loginSpy).toHaveBeenCalledWith(makeFakeLoginRequest())
+    });
+  });
+
+  describe('signup', () => {
+    test('should call AuthService with corrects params', async () => {
+      const loginSpy = jest.spyOn(spyService, 'create')
+      controller.createUser(makeFakeCreateUserRequest())
+      expect(loginSpy).toHaveBeenCalledWith(makeFakeCreateUserRequest())
     });
   });
 });
