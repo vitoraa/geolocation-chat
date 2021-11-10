@@ -15,10 +15,17 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
-  });
+  describe('POST /signup', () => {
+    test('Should return 201 on signup', async () => {
+      await request(app.getHttpServer())
+        .post('/auth/signup')
+        .send({
+          name: 'Vitor',
+          email: 'vitor2@gmail.com',
+          password: '123',
+          passwordConfirmation: '123'
+        })
+        .expect(201)
+    });
+  })
 });
