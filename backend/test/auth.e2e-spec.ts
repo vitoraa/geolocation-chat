@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { ormConfig } from '../src/infra/database/config/ormconfig';
 import { UserEntity } from '../src/users/user.entity';
 import { AuthModule } from '../src/auth/auth.module';
+import { hash } from 'bcrypt'
+import { environment } from '../src/environment';
 
 describe('', () => {
   let app: INestApplication;
@@ -53,6 +55,24 @@ describe('', () => {
           password: 'wrong_password',
         })
         .expect(401)
+    });
+
+    test('Should return 200 on login', async () => {
+      const password = await hash('123', parseInt(environment.saltNumber))
+      await repository.save({
+        name: 'teste',
+        email: 'email@email.com',
+        password: password,
+        passwordConfirmation: password
+      });
+
+      await request(app.getHttpServer())
+        .post('/auth/login')
+        .send({
+          email: 'email@email.com',
+          password: '123',
+        })
+        .expect(200)
     });
   })
 });
