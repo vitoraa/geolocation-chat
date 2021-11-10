@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -44,7 +44,10 @@ describe('', () => {
           passwordConfirmation: '123',
           role: 'User'
         })
-        .expect(201)
+        .expect(({ body }) => {
+          expect(body.name).toBe('Vitor')
+        })
+        .expect(HttpStatus.CREATED);
     });
 
     test('Should return 400 on signup', async () => {
@@ -55,7 +58,7 @@ describe('', () => {
           password: '123',
           passwordConfirmation: '123'
         })
-        .expect(400)
+        .expect(HttpStatus.BAD_REQUEST);
     });
   })
 
@@ -67,7 +70,7 @@ describe('', () => {
           email: 'vitor2@gmail.com',
           password: 'wrong_password',
         })
-        .expect(401)
+        .expect(HttpStatus.UNAUTHORIZED);
     });
 
     test('Should return 200 on login', async () => {
@@ -85,7 +88,10 @@ describe('', () => {
           email: 'email@email.com',
           password: '123',
         })
-        .expect(200)
+        .expect(({ body }) => {
+          expect(body).toHaveProperty('accessToken');
+        })
+        .expect(HttpStatus.OK);
     });
   })
 });
